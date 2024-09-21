@@ -1,1 +1,1 @@
-const baseurl = "http://localhost:7222/";
+const baseurl = "https://nageshstaskmanager.azurewebsites.net/";
