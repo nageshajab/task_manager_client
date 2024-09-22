@@ -82,13 +82,31 @@ async function Binddata(data) {
                     <td>${task.dueDate}</td>
                     <td>${printPriority(task.priority)}</td>
                     <td>${printStatus(task.status)}</td>
-                    <td><a href="/tasks/edit?id=${task.Id}">Edit</a> <a  href="/tasks/delete?id=${task.Id}">Delete</a> </td>
+                    <td><a href="/tasks/edit?id=${task.id}">Edit</a> 
+                    <button class="btn " onclick='DeleteTask(${task.id})'>Delete</button></td>
+                    
                     </tr>`;
         taskhtml += taskrow;
     }
     $('#lstTasks').append(taskhtml + '</table>');
 
     bindPagination(data);
+}
+
+async function DeleteTask(id){
+    var requestbody = {
+        'Id': id
+    };
+    var result = await makeHttpPostRequest(baseurl + 'api/deletetask', requestbody).catch(error => {
+        console.error(error);
+    }).then(data => {
+        debugger;
+        if (data != undefined) {
+            clearSearch();
+        } else {
+            alert('something went wrong');
+        }
+    });
 }
 
 function bindPagination(data) {
