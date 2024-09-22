@@ -31,18 +31,18 @@
                     </li>
                     
 
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown"  id="adminmenu">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Admin</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Users</a></li>
-                            <li><a class="dropdown-item" href="#">Roles</a></li>
+                            <li><a class="dropdown-item" href="users.html">Users</a></li>
+                            <li><a class="dropdown-item" href="roles.html">Roles</a></li>
                         </ul>
                     </li>
                 </ul>
                 <div class="d-flex white-text">
                     Welcome &nbsp;<span id="username"></span>&nbsp;
                     <button class="btn btn-primary" id="btnlogin" type="button">Login</button>
-                    <button class="btn btn-primary" id="btnlogout" type="button">Logout</button>
+                    <button onclick="logout()"  class="btn btn-primary" id="btnlogout" type="button">Logout</button>
                 </div>
             </div>
         </div>

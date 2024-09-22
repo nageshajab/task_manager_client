@@ -14,9 +14,9 @@
         }
     </style>
     <script>
-      
         $(document).ready(async function () {
-            await LoadTasks();
+            if (getUrlVars()['id'] != undefined)
+                await gettask();
         });
     </script>
 </head>
@@ -39,7 +39,7 @@
                     </li>
 
 
-                    <li class="nav-item dropdown"  id="adminmenu">
+                    <li class="nav-item dropdown" id="adminmenu">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Admin</a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="users.html">Users</a></li>
@@ -50,57 +50,59 @@
                 <div class="d-flex white-text">
                     Welcome &nbsp;<span id="username"></span>&nbsp;
                     <button class="btn btn-primary" id="btnlogin" type="button">Login</button>
-                    <button onclick="logout()"  class="btn btn-primary" id="btnlogout" type="button">Logout</button>
+                    <button onclick="logout()" class="btn btn-primary" id="btnlogout" type="button">Logout</button>
                 </div>
             </div>
         </div>
     </nav>
 
-    <div class="container-fluid mt-3">
-        <h3>Tasks</h3>
-
-        <form method="post" onsubmit="searchtask(event)">
-            <div class="row ">
-                <div class=col-md-2>
-                    <label class="control-label bold">From</label>
-                    <input type="datetime-local" id="DueFromDate" class="form-control" />
-                </div>
-                <div class=col-md-2>
-                    To
-                    <input type="datetime-local" id="DueToDate" class="form-control" />
-                </div>
-                <div class="col-md-2">
-                    <label class="control-label">Status</label><br />
-                    <select id="Status" class="form-control">
-                        <option value="None">Select</option>
-                        <option value=InProgress>In Progress</option>
-                        <option value=Completed>Completed</option>
-                        <option value=Pending>Pending</option>
-                    </select>
-                </div>
-                <div class=col-md-2>
-                    <br />
-                    <input type="submit" value="Search" class="btn btn-primary" />
-                    <input type="button" value="Clear" onclick="clearSearch()" class="btn btn-primary" />
-                    <a class="button" href="/addtask.html">Add New</a>
-                </div>
-
+    <div class="container mt-3">
+        <h2>Add Task</h2>
+        <form method="post" onsubmit="addtask(event)">
+            <div class="mb-3 mt-3">
+                <label for="title">Title:</label>
+                <input type="text" class="form-control" id="title" placeholder="Enter title" name="title">
             </div>
+            <div class="mb-3">
+                <label for="description">Description:</label>
+                <input type="text" class="form-control" id="description" placeholder="Enter description"
+                    name="description">
+            </div>
+            <div class="mb-3">
+                <label for="duedate">Due Date:</label>
+                <input type="datetime-local" class="form-control" id="duedate" placeholder="Enter duedate"
+                    name="duedate">
+            </div>
+            <div class="mb-3">
+                <label for="priority">Priority:</label>
+                <select id="priority" class="form-control">
+                    <option value=0>High</option>
+                    <option value=1>Medium</option>
+                    <option value=2>Low</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="status">Status:</label>
+                <select id="Status" class="form-control">
+                    <option value=1>In Progress</option>
+                    <option value=2>Completed</option>
+                    <option value=0>Pending</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Register</button>
         </form>
-        <div class="row">
-            <div class="col-md-12" id="lstTasks">
-            </div>
-            <div class="col-md-12" id="pagination"></div>
-        </div>
-       
     </div>
-<input type="hidden" id="pageno">
+
     <!--common js imports-->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./scripts/makehttpcall.js"></script>
     <script src="./scripts/appconfig.js"></script>
     <script src="./scripts/validateuser.js"></script>
-    <script src="./scripts/tasks/searchtasks.js"></script>
+    <script src="./scripts/tasks/addtask.js"></script>
+    <script src="./scripts/geturlvars.js"></script>
+    <script src="./scripts/tasks/edittask.js"></script>
 </body>
 
 </html>

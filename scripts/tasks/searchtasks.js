@@ -82,7 +82,7 @@ async function Binddata(data) {
                     <td>${task.dueDate}</td>
                     <td>${printPriority(task.priority)}</td>
                     <td>${printStatus(task.status)}</td>
-                    <td><a href="/tasks/edit?id=${task.id}">Edit</a> 
+                    <td><a href="/addtask.html?id=${task.id}">Edit</a> 
                     <button class="btn " onclick='DeleteTask(${task.id})'>Delete</button></td>
                     
                     </tr>`;
@@ -94,13 +94,16 @@ async function Binddata(data) {
 }
 
 async function DeleteTask(id){
+    if(!confirm('are u sure?'))
+        return;
+    
     var requestbody = {
         'Id': id
     };
     var result = await makeHttpPostRequest(baseurl + 'api/deletetask', requestbody).catch(error => {
         console.error(error);
     }).then(data => {
-        debugger;
+//        debugger;
         if (data != undefined) {
             clearSearch();
         } else {
@@ -110,7 +113,7 @@ async function DeleteTask(id){
 }
 
 function bindPagination(data) {
-    debugger;
+ //   debugger;
 
     var numberofpages = Math.ceil(data.taskSearch.totalRecords / 10);
 
