@@ -54,12 +54,13 @@ async function LoadTasks() {
     }).then(data => {
         //debugger;
         if (data != undefined) {
+            console.log(JSON.stringify(data));
             Binddata(data);
         } else {
             alert('no data found');
         }
     });
-    console.log(JSON.stringify(result));
+    
 }
 
 async function Binddata(data) {
@@ -83,7 +84,7 @@ async function Binddata(data) {
                     <td>${printPriority(task.priority)}</td>
                     <td>${printStatus(task.status)}</td>
                     <td><a href="/addtask.html?id=${task.id}">Edit</a> 
-                    <button class="btn " onclick='DeleteTask(${task.id})'>Delete</button></td>
+                    <button class="btn " onclick='DeleteTask("${task.id}")'>Delete</button></td>
                     
                     </tr>`;
         taskhtml += taskrow;
@@ -98,7 +99,7 @@ async function DeleteTask(id){
         return;
     
     var requestbody = {
-        'Id': id
+        Id: id
     };
     var result = await makeHttpPostRequest(baseurl + 'api/deletetask', requestbody).catch(error => {
         console.error(error);

@@ -20,18 +20,14 @@
                 PasswordHash: document.getElementById('pwd').value
             };
 
-            var result = await makeHttpPostRequest(baseurl+'api/Login', requestbody).catch(error => {
+            var result = await makeHttpPostRequest(baseurl+'api/register', requestbody).catch(error => {
                 console.error(error);
             }).then(data => {
-                if (data.token != undefined) {
-                    localStorage.setItem('authenticationToken', data.token);
-                    localStorage.setItem('username', data.username);
-                    localStorage.setItem('userId', data.userId);
-                    localStorage.setItem('roles', data.roles);
-                    window.location.href = 'index.html';
+                if (data != undefined) {
+                   alert(data);
+                   window.location.href="login.html";
                 } else {
-                    alert(data);
-                    clearform();
+                    alert('something went wrong');
                 }
             });
             console.log(JSON.stringify(result));
@@ -41,7 +37,7 @@
 <body>
 
     <div class="container mt-3">
-        <h2>Login Form</h2>
+        <h2>Register Form</h2>
         <form method="post" onsubmit="handleSubmit(event)">
             <div class="mb-3 mt-3">
                 <label for="email">Email:</label>
@@ -53,7 +49,6 @@
             </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>
-            <a type="submit" class="btn btn-primary" href="register.html">Register</a>
         </form>
     </div>
 
