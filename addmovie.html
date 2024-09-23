@@ -59,11 +59,11 @@
     </nav>
 
     <div class="container mt-3">
-        <h2>Add Task</h2>
-        <form method="post" onsubmit="addtask(event)">
+        <h2>Add Movie</h2>
+        <form method="post" onsubmit="addmovie(event)">
             <div class="mb-3 mt-3">
-                <label for="title">Title:</label>
-                <input type="text" class="form-control" id="title" placeholder="Enter title" name="title">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter name" name="name">
             </div>
             <div class="mb-3">
                 <label for="description">Description:</label>
@@ -71,25 +71,44 @@
                     name="description">
             </div>
             <div class="mb-3">
-                <label for="duedate">Due Date:</label>
-                <input type="date" class="form-control" id="duedate" placeholder="Enter duedate"
-                    name="duedate">
-            </div>
-            <div class="mb-3">
-                <label for="priority">Priority:</label>
-                <select id="priority" class="form-control">
-                    <option value=0>High</option>
-                    <option value=1>Medium</option>
-                    <option value=2>Low</option>
+                <label for="genre">Genre:</label>
+                <select id="genre" class="form-control">
+                    <option value="0">Suspense</option>
+                    <option value="1">Action</option>
+                    <option value="2">Comedy</option>
+                    <option value="3">Romance</option>
+                    <option value="4">Drama</option>
+                    <option value="5">Horror</option>
+                    <option value="6">SciFi</option>
+                    <option value="7">Documentary</option>
+                    <option value="8">Animation</option>
                 </select>
             </div>
             <div class="mb-3">
-                <label for="status">Status:</label>
-                <select id="Status" class="form-control">
-                    <option value=1>In Progress</option>
-                    <option value=2>Completed</option>
-                    <option value=0>Pending</option>
+                <label for="rating">Rating:</label>
+                <select id="rating" class="form-control">
+                    <option value=1>1</option>
+                    <option value=2>2</option>
+                    <option value=3>3</option>
+                    <option value=4>4</option>
+                    <option value=5>5</option>
                 </select>
+            </div>
+            <div class="mb-3">
+                <label for="language">Language:</label>
+                <select id="language" class="form-control">
+                    <option value=0>Hindi</option>
+                    <option value=1>English</option>
+                    <option value=2>Tamil</option>
+                    <option value=3>Telugu</option>
+                    <option value=4>Malayalam</option>
+                    <option value=5>Kannada</option>
+                    <option value=6>Marathi</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="actors">actors:</label>
+                <input type="actors" class="form-control" id="actors" placeholder="Enter actors" name="actors">
             </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>
@@ -100,10 +119,11 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./scripts/makehttpcall.js"></script>
     <script src="./scripts/appconfig.js"></script>
-    <script src="./scripts/validateuser.js"></script>
-    <script src="./scripts/tasks/addtask.js"></script>
+    <script src="./scripts/validateuser.js"></script>    
     <script src="./scripts/geturlvars.js"></script>
-    <script src="./scripts/tasks/edittask.js"></script>
+
+    <script src="./scripts/movies/addmovie.js"></script>
+    <script src="./scripts/movies/editmovie.js"></script>
 </body>
 
 </html>
