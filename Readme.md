@@ -28,6 +28,7 @@ git clone https://github.com/nageshajab/task_manager_client.git
 ## Build client code
 ```python
 1. This is a static website written in html, css, js. So no need to build it
+2. deploy it to IIS or XAMPP or any other web server
 ```
 
 ## User Secrets
