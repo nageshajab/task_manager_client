@@ -9,4 +9,4 @@ async function makeHttpPostRequest(url, data) {
     throw error;
   }
 }
-module.exports = makeHttpPostRequest;
+//module.exports = makeHttpPostRequest;

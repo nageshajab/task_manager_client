@@ -1,4 +1,4 @@
-const makeHttpPostRequest = require('../makehttpcall');
+//const makeHttpPostRequest = require('../makehttpcall');
 
 
 async function clearSearch() {
