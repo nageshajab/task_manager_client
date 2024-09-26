@@ -3,31 +3,28 @@ async function clearSearch() {
     await searchmovie();
 }
 async function searchmovies(event) {
-    //  debugger;
     if (event != undefined) {
         event.preventDefault();
         $('#pageno').val('');
     }
 
-    var moviesearch = {
-        UserId: localStorage.getItem('userId')
-    };
+    var userId = localStorage.getItem('userId');
+    var pageNumber = $('#pageno').val() !== '' ? $('#pageno').val() : 1;
 
-    if ($('#pageno').val() !== '') {
-        moviesearch.pageNumber = $('#pageno').val();
-    }
-    debugger;
-    var result = await makeHttpPostRequest(baseurl + 'api/movielist', moviesearch).catch(error => {
-        console.error(error);
-    }).then(data => {
-        debugger;
-        if (data != undefined) {
-            Binddata(data);
+    var url = `${baseurl}api/movielist?UserId=${userId}&pageNumber=${pageNumber}`;
+
+    try {
+        var result = await makeHttpGetRequest(url);
+        if (result != undefined && result.length > 0) {
+            Binddata(result);
         } else {
-            alert(data);
+            alert('No data found');
             clearform();
         }
-    });
+    } catch (error) {
+        alert('Error searching movies');
+        console.error(error);
+    }
     console.log(JSON.stringify(result));
 }
 
@@ -164,3 +161,4 @@ function printLanguage(language) {
         default: return ''
     }
 }       
+module.exports = searchmovies;

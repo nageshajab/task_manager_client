@@ -1,5 +1,5 @@
 async function addmovie(event) {
-     debugger;
+    debugger;
     if (event != undefined) {
         event.preventDefault();
     }
@@ -14,34 +14,22 @@ async function addmovie(event) {
         UserId: localStorage.getItem('userId')
     };
 
-    if (getUrlVars()['id'] != undefined) {
-       
-        movie.Id = getUrlVars()['id'];
-        var result = await makeHttpPostRequest(baseurl + 'api/updatemovie', movie).catch(error => {
-            console.error(error);
-        }).then(data => {
-            debugger;
-            if (data != undefined) {
-                alert('updated successfully');
-                window.location.href = '/movies.html';
-            } else {
-                alert(data);
-                clearform();
-            }
-        });
-    } else { 
-        var result = await makeHttpPostRequest(baseurl + 'api/addmovie', movie).catch(error => {
-            console.error(error);
-        }).then(data => {
-            debugger;
-            if (data != undefined) {
-                alert('added successfully');
-                window.location.href = '/movies.html';
-            } else {
-                alert(data);
-                clearform();
-            }
-        });
+    try {
+        let result;
+        if (getUrlVars()['id'] != undefined) {
+            movie.Id = getUrlVars()['id'];
+            result = await makeHttpPostRequest(baseurl + 'api/updatemovie', movie);
+            alert('updated successfully');
+        } else {
+            result = await makeHttpPostRequest(baseurl + 'api/addmovie', movie);
+            alert('added successfully');
+        }
+        window.location.href = '/movies.html';
+        console.log(JSON.stringify(result)); // Ensure result is logged here
+    } catch (error) {
+        console.error(error);
+        alert(error);
+        clearform();
     }
-    console.log(JSON.stringify(result));
 }
+module.exports = addmovie;

@@ -1,28 +1,30 @@
-async function getmovie(event) {
-    //  debugger;
+async function editmovie(event) {
+    debugger;
     if (event != undefined) {
         event.preventDefault();
     }
-    var id = {
-        id: getUrlVars()['id']
+
+    var movie = {
+        Id: $('#id').val(),
+        Name: $('#name').val(),
+        Genre: $('#genre').val(),
+        Rating: $('#rating').val(),
+        Description: $('#description').val(),
+        Language: $('#language').val(),
+        Actors: $('#actors').val(),
+        UserId: localStorage.getItem('userId')
     };
 
-    debugger;
-    var result = await makeHttpPostRequest(baseurl + 'api/getmovie', id).catch(error => {
+    try {
+        const result = await makeHttpPostRequest(baseurl + 'api/updatemovie', movie);
+        alert('updated successfully');
+        window.location.href = '/movies.html';
+        console.log(JSON.stringify(result));
+    } catch (error) {
         console.error(error);
-    }).then(data => {
-        debugger;
-        if (data != undefined) {
-           
-            $('#name').val(data.name);
-            $('#genre').val(data.genre);
-            $('#rating').val(data.rating);
-            $('#description').val(data.description);
-            $('#language').val(data.language);
-            $('#actors').val(data.actors);
-        } else {
-            alert('movie not found');
-        }
-    });
-    console.log(JSON.stringify(result));
+        alert(error);
+        clearform();
+    }
 }
+
+module.exports = editmovie;
