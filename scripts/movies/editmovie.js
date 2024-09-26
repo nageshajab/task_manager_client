@@ -27,4 +27,4 @@ async function editmovie(event) {
     }
 }
 
-module.exports = editmovie;
+//module.exports = editmovie;

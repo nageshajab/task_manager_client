@@ -6,7 +6,7 @@ async function gettask(event) {
     }
     debugger;
     var task = {
-        Id: getUrlVars()['id'] 
+        Id: getUrlVars()['id']
     };
 
     var result = await makeHttpPostRequest(baseurl + 'api/gettask', task).catch(error => {
@@ -15,15 +15,16 @@ async function gettask(event) {
         debugger;
         if (data != undefined) {
             let text = data.dueDate;
-            const myArray = text.split("-");
-            var year = myArray[0];            
-            var month = myArray[1];            
-            var day = myArray[2].split('T')[0];
-            $('#duedate').val('' + year + '-' + month + '-' + day + '');
-
+            if (text != undefined) {
+                const myArray = text.split("-");
+                var year = myArray[0];
+                var month = myArray[1];
+                var day = myArray[2].split('T')[0];
+                $('#duedate').val('' + year + '-' + month + '-' + day + '');
+            }
             $('#title').val(data.title);
             $('#description').val(data.description);
-           // $('#duedate').val(data.dueDate);
+            // $('#duedate').val(data.dueDate);
             $('#priority').val(data.priority);
             $('#status').val(data.status);
 
@@ -35,4 +36,4 @@ async function gettask(event) {
     console.log(JSON.stringify(result));
 }
 
-//module.exports = edittask;
+//module.exports = gettask;
