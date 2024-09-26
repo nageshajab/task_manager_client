@@ -1,11 +1,14 @@
-async function clearSearch(){
+const makeHttpPostRequest = require('../makehttpcall');
+
+
+async function clearSearch() {
     $('#pageno').val('');
     $('#Status').val('None');
     $('#DueFromDate').val('');
     $('#DueToDate').val('');
-    await searchtask(); 
+    await searchtasks(); 
 }
-async function searchtask(event) {
+async function searchtasks(event) {
     //  debugger;
     if (event != undefined) {
         event.preventDefault();
@@ -133,7 +136,7 @@ function bindPagination(data) {
 
 async function Binddatabypagenumber(pgno) {
     $('#pageno').val(pgno);
-    await searchtask();
+    await searchtasks();
 }
 
 function printStatus(status) {
@@ -153,3 +156,5 @@ function printPriority(priority) {
         default: return ''
     }
 }
+
+//module.exports = searchtasks;

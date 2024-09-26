@@ -1,26 +1,32 @@
-async function gettask(event) {
-    //  debugger;
+const getUrlVars = require('../geturlvars');
+
+async function edittask(event) {
     if (event != undefined) {
         event.preventDefault();
     }
-    var id = {
-        id: getUrlVars()['id']
+
+    var task = {
+        Id: $('#taskId').val(),
+        Title: $('#title').val(),
+        Description: $('#description').val(),
+        UserId: localStorage.getItem('userId'),
+        DueDate: $('#duedate').val(),
+        Priority: $('#priority').val(),
+        Status: $('#status').val()
     };
 
-    debugger;
-    var result = await makeHttpPostRequest(baseurl + 'api/gettask', id).catch(error => {
+    var result = await makeHttpPostRequest(baseurl + 'api/updatetask', task).catch(error => {
         console.error(error);
     }).then(data => {
-        debugger;
         if (data != undefined) {
-            $('#title').val(data.title);
-            $('#description').val(data.description);
-            $('#duedate').val(data.dueDate);
-            $('#priority').val(data.priority);
-            $('#status').val(data.status);
+            alert('updated successfully');
+            window.location.href = '/tasks.html';
         } else {
-            alert('task not found');
+            alert('Failed to update task');
         }
     });
+
     console.log(JSON.stringify(result));
 }
+
+//module.exports = edittask;

@@ -17,7 +17,7 @@ async function searchusers(event) {
         usersearch.pageNumber = $('#pageno').val();
     }
     debugger;
-    var result = await makeHttpPostRequest(baseurl + 'api/userlist', tasksearch).catch(error => {
+    var result = await makeHttpPostRequest(baseurl + 'api/userlist', usersearch).catch(error => {
         console.error(error);
     }).then(data => {
         debugger;
@@ -92,5 +92,7 @@ function bindPagination(data) {
 
 async function Binddatabypagenumber(pgno) {
     $('#pageno').val(pgno);
-    await searchtask();
+    await searchtasks();
 }
+
+//module.exports = searchusers;

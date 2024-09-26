@@ -1,6 +1,6 @@
-const searchmovies = require('./searchmovies');
+const searchroles = require('./searchroles');
 
-describe('searchmovies', () => {
+describe('searchroles', () => {
     beforeEach(() => {
         global.makeHttpGetRequest = jest.fn().mockResolvedValue([]);
         global.Binddata = jest.fn();
@@ -13,71 +13,70 @@ describe('searchmovies', () => {
 
         // Mock jQuery functions
         global.$ = jest.fn().mockImplementation((selector) => {
-            if (selector === '#pageno') {
-                return {
-                    val: jest.fn().mockReturnValue('1'),
-                    empty: jest.fn(),
-                };
-            }
-            return {
-                val: jest.fn(),
+            const mockElement = {
+                val: jest.fn().mockReturnValue('1'),
                 empty: jest.fn(),
+                append: jest.fn(),
             };
+            return mockElement;
         });
 
         // Mock localStorage
         global.localStorage = {
             getItem: jest.fn().mockReturnValue('123'),
         };
+
+        // Mock clearform function
+        global.clearform = jest.fn();
     });
 
     afterEach(() => {
         jest.clearAllMocks();
     });
 
-    test('should make HTTP GET request to searchmovies API', async () => {
+    test('should make HTTP GET request to searchroles API', async () => {
         const mockEvent = { preventDefault: jest.fn() };
-        await searchmovies(mockEvent);
+        await searchroles(mockEvent);
         expect(global.makeHttpGetRequest).toHaveBeenCalledWith(
-            'http://example.com/api/movielist?UserId=123&pageNumber=1'
+            'http://example.com/api/rolelist?UserId=123&pageNumber=1'
         );
     });
 
-    //test('should display movies on successful search', async () => {
+    //test('should display roles on successful search', async () => {
     //    const mockEvent = { preventDefault: jest.fn() };
-    //    const mockResult = [{ id: 1, name: 'Movie 1' }];
+    //    const mockResult = [{ id: 1, name: 'Role 1' }];
     //    global.makeHttpGetRequest.mockResolvedValue(mockResult);
-    //    await searchmovies(mockEvent);
+    //    await searchroles(mockEvent);
     //    expect(global.Binddata).toHaveBeenCalledWith(mockResult);
     //});
 
     test('should log the result on successful search', async () => {
         const mockEvent = { preventDefault: jest.fn() };
-        const mockResult = [{ id: 1, name: 'Movie 1' }];
+        const mockResult = [{ id: 1, name: 'Role 1' }];
         global.makeHttpGetRequest.mockResolvedValue(mockResult);
-        await searchmovies(mockEvent);
+        await searchroles(mockEvent);
         expect(global.console.log).toHaveBeenCalledWith(JSON.stringify(mockResult));
     });
 
     test('should display alert if no data found', async () => {
         const mockEvent = { preventDefault: jest.fn() };
         global.makeHttpGetRequest.mockResolvedValue([]);
-        await searchmovies(mockEvent);
+        await searchroles(mockEvent);
         expect(global.alert).toHaveBeenCalledWith('No data found');
     });
 
     test('should display error alert on unsuccessful search', async () => {
         const mockEvent = { preventDefault: jest.fn() };
         global.makeHttpGetRequest.mockRejectedValue('error');
-        await searchmovies(mockEvent);
-        expect(global.alert).toHaveBeenCalledWith('Error searching movies');
+        await searchroles(mockEvent);
+        expect(global.alert).toHaveBeenCalledWith('Error searching roles');
     });
 
     test('should log the error on unsuccessful search', async () => {
         const mockEvent = { preventDefault: jest.fn() };
-        const mockError = 'error';
+        const mockError = new Error('error');
         global.makeHttpGetRequest.mockRejectedValue(mockError);
-        await searchmovies(mockEvent);
+        await searchroles(mockEvent);
         expect(global.console.error).toHaveBeenCalledWith(mockError);
     });
 });

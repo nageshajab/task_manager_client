@@ -1,3 +1,5 @@
+const getUrlVars = require('../geturlvars');
+
 async function addtask(event) {
      debugger;
     if (event != undefined) {
@@ -44,3 +46,5 @@ async function addtask(event) {
     }
     console.log(JSON.stringify(result));
 }
+
+//module.exports = addtask;

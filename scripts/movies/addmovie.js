@@ -32,4 +32,5 @@ async function addmovie(event) {
         clearform();
     }
 }
-module.exports = addmovie;
+
+//module.exports = addmovie;

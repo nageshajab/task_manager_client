@@ -1,33 +1,32 @@
-async function clearSearch(){
+const makeHttpPostRequest = require('../makehttpcall');
+
+async function clearSearch() {
     $('#pageno').val('');
        await searchroles(); 
 }
-
 async function searchroles(event) {
-    //  debugger;
     if (event != undefined) {
         event.preventDefault();
         $('#pageno').val('');
     }
 
-    var rolesearch = {
-        //UserId: localStorage.getItem('userId')
-    };
-    if ($('#pageno').val() !== '') {
-        rolesearch.pageNumber = $('#pageno').val();
-    }
-    debugger;
-    var result = await makeHttpPostRequest(baseurl + 'api/rolelist', rolesearch).catch(error => {
-        console.error(error);
-    }).then(data => {
-        debugger;
-        if (data != undefined) {
-            Binddata(data);
+    var userId = localStorage.getItem('userId');
+    var pageNumber = $('#pageno').val() !== '' ? $('#pageno').val() : 1;
+
+    var url = `${baseurl}api/rolelist?UserId=${userId}&pageNumber=${pageNumber}`;
+
+    try {
+        var result = await makeHttpGetRequest(url);
+        if (result != undefined && result.length > 0) {
+            Binddata(result);
         } else {
-            alert(data);
+            alert('No data found');
             clearform();
         }
-    });
+    } catch (error) {
+        alert('Error searching roles');
+        console.error(error);
+    }
     console.log(JSON.stringify(result));
 }
 
@@ -92,3 +91,5 @@ async function Binddatabypagenumber(pgno) {
     $('#pageno').val(pgno);
     await searchroles();
 }
+
+//module.exports = searchroles;
