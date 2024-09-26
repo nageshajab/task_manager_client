@@ -44,7 +44,7 @@ Please configure below settings in user.secrets file
 2. Once you push changes to git, it will automatically deploy to Azure static web site
 3. It takes 2,3 minutes to reflect changes.
 4. You can access the site using below url
-https://red-dune-04470d41e.5.azurestaticapps.net/login.html
+https://purple-glacier-010ffcd1e.5.azurestaticapps.net/movies.html
 5. This is horizontally scallable instance
 ```
 
