@@ -14,9 +14,9 @@
         }
     </style>
     <script>
-      
+
         $(document).ready(async function () {
-            await LoadUsers();
+            await LoadTasks();
         });
     </script>
 </head>
@@ -25,85 +25,87 @@
 
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="javascript:void(0)">Task Manager</a>
+            <a class="navbar-brand" href="../../index.html">Task Manager</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="mynavbar">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="javascript:void(0)">Home</a>
+                        <a class="nav-link" href="../../index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="tasks.html">Tasks</a>
+                        <a class="nav-link" href="../tasks/tasks.html">Tasks</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="movies.html">Movies</a>
+                        <a class="nav-link" href="../movies/movies.html">Movies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../blogposts/blogposts.html">BlogPosts</a>
                     </li>
 
-                    <li class="nav-item dropdown"  id="adminmenu">
+                    <li class="nav-item dropdown" id="adminmenu">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Admin</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="users.html">Users</a></li>
-                            <li><a class="dropdown-item" href="roles.html">Roles</a></li>
+                            <li><a class="dropdown-item" href="../admin/users.html">Users</a></li>
+                            <li><a class="dropdown-item" href="../admin/roles.html">Roles</a></li>
                         </ul>
                     </li>
                 </ul>
                 <div class="d-flex white-text">
                     Welcome &nbsp;<span id="username"></span>&nbsp;
                     <button class="btn btn-primary" id="btnlogin" type="button">Login</button>
-                    <button onclick="logout()"  class="btn btn-primary" id="btnlogout" type="button">Logout</button>
+                    <button onclick="logout()" class="btn btn-primary" id="btnlogout" type="button">Logout</button>
                 </div>
             </div>
         </div>
     </nav>
 
     <div class="container-fluid mt-3">
-        <h3>Users</h3>
+        <h3>Tasks</h3>
 
         <form method="post" onsubmit="searchtasks(event)">
             <div class="row ">
                 <div class=col-md-2>
-                    <!-- <label class="control-label bold">From</label>
-                    <input type="datetime-local" id="DueFromDate" class="form-control" /> -->
+                    <label class="control-label bold">From</label>
+                    <input type="datetime-local" id="DueFromDate" class="form-control" />
                 </div>
                 <div class=col-md-2>
-                    <!-- To
-                    <input type="datetime-local" id="DueToDate" class="form-control" /> -->
+                    To
+                    <input type="datetime-local" id="DueToDate" class="form-control" />
                 </div>
                 <div class="col-md-2">
-                    <!-- <label class="control-label">Status</label><br />
+                    <label class="control-label">Status</label><br />
                     <select id="Status" class="form-control">
                         <option value="None">Select</option>
                         <option value=InProgress>In Progress</option>
                         <option value=Completed>Completed</option>
                         <option value=Pending>Pending</option>
-                    </select> -->
+                    </select>
                 </div>
                 <div class=col-md-2>
                     <br />
-                    <!-- <input type="submit" value="Search" class="btn btn-primary" />
+                    <input type="submit" value="Search" class="btn btn-primary" />
                     <input type="button" value="Clear" onclick="clearSearch()" class="btn btn-primary" />
-                    <a class="button" href="/addtask.html">Add New</a> -->
+                    <a class="button" href="/html/tasks/addtask.html">Add New</a>
                 </div>
 
             </div>
         </form>
         <div class="row">
-            <div class="col-md-12" id="lstUsers">
+            <div class="col-md-12" id="lstTasks">
             </div>
             <div class="col-md-12" id="pagination"></div>
         </div>
-       
+
     </div>
-<input type="hidden" id="pageno">
+    <input type="hidden" id="pageno">
     <!--common js imports-->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="./scripts/makehttpcall.js"></script>
-    <script src="./scripts/appconfig.js"></script>
-    <script src="./scripts/validateuser.js"></script>
-
-    <script src="./scripts/users/searchusers.js"></script>
+    <script src="../../scripts/makehttpcall.js"></script>
+    <script src="../../scripts/appconfig.js"></script>
+    <script src="../../scripts/validateuser.js"></script>
+    <script src="../../scripts/tasks/searchtasks.js"></script>
 </body>
 
 </html>

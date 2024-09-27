@@ -86,7 +86,7 @@ async function Binddata(data) {
                     <td>${task.dueDate}</td>
                     <td>${printPriority(task.priority)}</td>
                     <td>${printStatus(task.status)}</td>
-                    <td><a href="/addtask.html?id=${task.id}">Edit</a> 
+                    <td><a href="/html/tasks/addtask.html?id=${task.id}">Edit</a> 
                     <button class="btn " onclick='DeleteTask("${task.id}")'>Delete</button></td>
                     
                     </tr>`;

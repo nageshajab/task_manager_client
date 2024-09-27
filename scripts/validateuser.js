@@ -2,7 +2,7 @@
 // Check if the authenticationToken key exists in localStorage
 if (localStorage.getItem('authenticationToken') == null || localStorage.getItem('authenticationToken') == 'undefined') {
     // Redirect to the login.html page
-    window.location.href = 'login.html';
+    window.location.href = 'html/admin/login.html';
 } else {
     $('#username').text(localStorage.getItem('username'));
     $('#btnlogin').hide();
@@ -22,5 +22,5 @@ if (roles != null || roles != 'undefined') {
 
 async function logout(){
     localStorage.clear();
-    window.location.href = 'login.html';
+    window.location.href = 'html/admin/login.html';
 }

@@ -1,43 +1,43 @@
 //const getUrlVars = require('../geturlvars');
 
-async function addtask(event) {
+async function addblogpost(event) {
      debugger;
     if (event != undefined) {
         event.preventDefault();
     }
-
-    var task = {
+debugger;
+    var BlogPost = {
         Title: $('#title').val(),
         Description: $('#description').val(),
         UserId: localStorage.getItem('userId'),
-        DueDate: $('#duedate').val(),
-        Priority: $('#priority').val(),
-        Status: $('#status').val()
+        RepositoryUrls: $('#repositoryurls').val().split(','),
+        BlogPostUrl: $('#BlogPostUrl').val(),
+        Tags: $('#Tags').val().split(',')
     };
 
     if (getUrlVars()['id'] != undefined) {
        
-        task.Id = getUrlVars()['id'];
-        var result = await makeHttpPostRequest(baseurl + 'api/updatetask', task).catch(error => {
+        BlogPost.Id = getUrlVars()['id'];
+        var result = await makeHttpPostRequest(baseurl + 'api/updateBlogPost', BlogPost).catch(error => {
             console.error(error);
         }).then(data => {
             debugger;
             if (data != undefined) {
                 alert('updated successfully');
-                window.location.href = '/html/tasks/tasks.html';
+                window.location.href = '/html/blogposts/BlogPosts.html';
             } else {
                 alert(data);
                 clearform();
             }
         });
     } else { 
-        var result = await makeHttpPostRequest(baseurl + 'api/addtask', task).catch(error => {
+        var result = await makeHttpPostRequest(baseurl + 'api/addBlogPost', BlogPost).catch(error => {
             console.error(error);
         }).then(data => {
             debugger;
             if (data != undefined) {
                 alert('added successfully');
-                window.location.href = '/html/tasks/tasks.html';
+                window.location.href = '/html/blogposts/BlogPosts.html';
             } else {
                 alert(data);
                 clearform();
@@ -47,4 +47,4 @@ async function addtask(event) {
     console.log(JSON.stringify(result));
 }
 
-//module.exports = addtask;
+//module.exports = addBlogPost;
