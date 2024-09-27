@@ -16,7 +16,7 @@
     <script>
         $(document).ready(async function () {
             if (getUrlVars()['id'] != undefined)
-                await gettask();
+                await getmovie();
         });
     </script>
 </head>
@@ -120,13 +120,13 @@
 
     <!--common js imports-->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="./scripts/makehttpcall.js"></script>
-    <script src="./scripts/appconfig.js"></script>
-    <script src="./scripts/validateuser.js"></script>    
-    <script src="./scripts/geturlvars.js"></script>
+    <script src="../../scripts/makehttpcall.js"></script>
+    <script src="../../scripts/appconfig.js"></script>
+    <script src="../../scripts/validateuser.js"></script>    
+    <script src="../../scripts/geturlvars.js"></script>
 
-    <script src="./scripts/movies/addmovie.js"></script>
-    <script src="./scripts/movies/editmovie.js"></script>
+    <script src="../../scripts/movies/addmovie.js"></script>
+    <script src="../../scripts/movies/editmovie.js"></script>
 </body>
 
 </html>

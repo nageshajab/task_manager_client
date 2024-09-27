@@ -29,7 +29,7 @@ async function searchmovies(event) {
 }
 
 async function Loadmovies() {
-    debugger;
+  //  debugger;
     var requestbody = {
         UserId: localStorage.getItem('userId')
         //email: document.getElementById('email').value,
@@ -51,7 +51,7 @@ async function Loadmovies() {
 }
 
 async function Binddata(data) {
-    debugger;
+   // debugger;
     $('#lstMovies').empty();
     if (data.listOfMovies != undefined) {
         var moviehtml = `<table class='table table-hover table-striped table-bordered'>
@@ -64,7 +64,7 @@ async function Binddata(data) {
         <td scope="col"><b>Actors</b></td>
         <td></td>        
     </tr>`;
-        debugger;
+     //   debugger;
 
         for (var i = 0; i < data.listOfMovies.length; i++) {
             var movie = data.listOfMovies[i];
@@ -75,7 +75,7 @@ async function Binddata(data) {
                     <td>${movie.description}</td>
                     <td>${printLanguage( movie.language)}</td>
                     <td>${movie.actors}</td>
-                    <td><a href="/addmovie.html?id=${movie.id}">Edit</a> 
+                    <td><a href="/html/movies/addmovie.html?id=${movie.id}">Edit</a> 
                     <button class="btn " onclick='Deletemovie("${movie.id}")'>Delete</button></td>
                     
                     </tr>`;
@@ -131,7 +131,7 @@ async function Binddatabypagenumber(pgno) {
 }
 
 function printGenre(status) {
-    debugger;
+ //   debugger;
     switch (status) {
     
         case 0: return 'Suspense';
@@ -148,7 +148,7 @@ function printGenre(status) {
 }
 
 function printLanguage(language) {
-    debugger;
+  //  debugger;
     switch (language) {
 
         case 0: return 'Hindi';
