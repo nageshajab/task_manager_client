@@ -69,7 +69,7 @@ async function Binddata(data) {
         var BlogPostrow = `<tr>
                     <td>${BlogPost.title}</td>
                     <td>${BlogPost.description}</td>
-                    <td>${BlogPost.blogPostUrl}</td>
+                    <td><a href= "${BlogPost.blogPostUrl}" target="_blank">Open</a></td>
                     <td>${BlogPost.tags}</td>
                     <td><a href="/addBlogPost.html?id=${BlogPost.id}">Edit</a> 
                     <button class="btn " onclick='DeleteBlogPost("${BlogPost.id}")'>Delete</button></td>
