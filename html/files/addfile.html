@@ -15,8 +15,10 @@
     </style>
     <script>
         $(document).ready(async function () {
-            if (getUrlVars()['id'] != undefined)
+            await gettagsfromdatabase();
+            if (getUrlVars()['id'] != undefined){
                 await getfile();
+            }            
         });
     </script>
 </head>
@@ -83,6 +85,7 @@
             </div>
             <div class="mb-3">
                 <label for="tags">Tags:</label>
+                <div id="tagsfromdb"></div>
                 <input type="text" class="form-control" id="tags" placeholder="Enter tags"
                 name="tags">
             </div>
@@ -111,7 +114,6 @@
     <script src="../../scripts/geturlvars.js"></script>
 
     <script src="../../scripts/files/addfile.js"></script>
-    <script src="../../scripts/files/editfile.js"></script>
     <script src="../../scripts/files/getfile.js"></script>
 </body>
 
