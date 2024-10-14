@@ -1,8 +1,8 @@
 //const makeHttpPostRequest = require('../makehttpcall');
 
 async function clearSearch() {
-    $('#pageno').val('');   
-    await searchsugarreadings(); 
+    $('#pageno').val('');
+    await searchsugarreadings();
 }
 async function searchsugarreadings(event) {
     //  debugger;
@@ -14,7 +14,7 @@ async function searchsugarreadings(event) {
     var sugarreadingsearch = {
         UserId: localStorage.getItem('userId')
     };
-   
+
     if ($('#pageno').val() !== '') {
         sugarreadingsearch.pageNumber = $('#pageno').val();
     }
@@ -33,7 +33,7 @@ async function searchsugarreadings(event) {
     console.log(JSON.stringify(result));
 }
 
-async function LoadSugarReadings() {
+async function LoadSugarReadings(param) {
     var requestbody = {
         UserId: localStorage.getItem('userId')
         //email: document.getElementById('email').value,
@@ -46,13 +46,19 @@ async function LoadSugarReadings() {
         //debugger;
         if (data != undefined) {
             console.log(JSON.stringify(data));
-            Binddata(data);
+            if (!param)
+                Binddata(data);
+            else{
+                BindDataForGraph(data);
+            }
         } else {
             alert('no data found');
         }
     });
-    
+
 }
+
+
 
 async function Binddata(data) {
     debugger;
@@ -86,17 +92,17 @@ async function Binddata(data) {
     bindPagination(data);
 }
 
-async function Deletesugarreading(id){
-    if(!confirm('are u sure?'))
+async function Deletesugarreading(id) {
+    if (!confirm('are u sure?'))
         return;
-    
+
     var requestbody = {
         Id: id
     };
     var result = await makeHttpPostRequest(baseurl + 'api/deletesugarreading', requestbody).catch(error => {
         console.error(error);
     }).then(data => {
-//        debugger;
+        //        debugger;
         if (data != undefined) {
             clearSearch();
         } else {
@@ -108,7 +114,7 @@ async function Deletesugarreading(id){
 function bindPagination(data) {
     debugger;
 
-    var numberofpages = Math.ceil(data.sugarReadingSearch .totalRecords / 10);
+    var numberofpages = Math.ceil(data.sugarReadingSearch.totalRecords / 10);
 
     $('#pagination').empty();
 

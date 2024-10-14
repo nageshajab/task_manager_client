@@ -102,7 +102,21 @@
                     <option value=0>Pending</option>
                 </select>
             </div>
-
+            <div class="mb-3">
+                <label for="repeat">Repeat:</label>
+                <select id="repeat" class="form-control">
+                    <option value=None>None</option>
+                    <option value=Daily>Daily</option>
+                    <option value=Weekly>Weekly</option>
+                    <option value=Monthly>Monthly</option>
+                    <option value=Yearly>Yearly</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="enddate">End Date:</label>
+                <input type="date" required class="form-control" id="enddate" placeholder="Enter enddate"
+                    name="enddate">
+            </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>

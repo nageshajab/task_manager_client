@@ -16,7 +16,7 @@
     <script>
 
         $(document).ready(async function () {
-            await LoadTasks();
+            await LoadAllSugarReadings('graph');
         });
     </script>
 </head>
@@ -25,7 +25,7 @@
 
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="../../index.html">Task Manager</a>
+            <a class="navbar-brand" href="../../index.html">Sugar Readings</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -70,50 +70,31 @@
     </nav>
 
     <div class="container-fluid mt-3">
-        <h3>Tasks</h3>
-
-        <form method="post" onsubmit="searchtasks(event)">
-            <div class="row ">
-                <div class=col-md-2>
-                    <label class="control-label bold">From</label>
-                    <input type="date" id="DueFromDate" class="form-control" />
-                </div>
-                <div class=col-md-2>
-                    To
-                    <input type="date" id="DueToDate" class="form-control" />
-                </div>
-                <div class="col-md-2">
-                    <label class="control-label">Status</label><br />
-                    <select id="Status" class="form-control">
-                        <option value="None">Select</option>
-                        <option value=InProgress>In Progress</option>
-                        <option value=Completed>Completed</option>
-                        <option value=Pending>Pending</option>
-                    </select>
-                </div>
-                <div class=col-md-2>
-                    <br />
-                    <input type="submit" value="Search" class="btn btn-primary" />
-                    <input type="button" value="Clear" onclick="clearSearch()" class="btn btn-primary" />
-                    <a class="button" href="/html/tasks/addtask.html">Add New</a>
-                </div>
-
-            </div>
-        </form>
+        <h3>Sugar Readings</h3>
         <div class="row">
-            <div class="col-md-12" id="lstTasks">
+            <div class="col-md-12">
+                <a class="button" href="/html/SugarReadings/sugarreadings.html">Edit data</a>
             </div>
-            <div class="col-md-12" id="pagination"></div>
         </div>
+        <div class="row">
+            <div class="col-md-12">
+                <canvas id="myChart" style="width:100%;max-width:1000px"></canvas>
+            </div>
+        </div>
+    </div>
+    
 
     </div>
     <input type="hidden" id="pageno">
     <!--common js imports-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="../../scripts/makehttpcall.js"></script>
     <script src="../../scripts/appconfig.js"></script>
     <script src="../../scripts/validateuser.js"></script>
-    <script src="../../scripts/tasks/searchtasks.js"></script>
+
+    <script src="../../scripts/sugarreadings/searchsugarreadings.js"></script>
+    <script src="../../scripts/sugarreadings/graph.js"></script>
 </body>
 
 </html>

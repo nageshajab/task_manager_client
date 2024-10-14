@@ -12,7 +12,9 @@ async function addtask(event) {
         UserId: localStorage.getItem('userId'),
         DueDate: $('#duedate').val(),
         Priority: $('#priority').val(),
-        Status: $('#status').val()
+        Status: $('#status').val(),
+        RepeatType:$("#repeat").val(),
+        Enddate:$("#enddate").val()
     };
 
     if (getUrlVars()['id'] != undefined) {
