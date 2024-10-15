@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Task Manager</title>
     <meta charset="utf-8">
@@ -12,7 +13,23 @@
             color: white;
         }
     </style>
+    <script>
+        $(document).ready(async function () {
+            await LoadTasks();
+            $('#DueFromDate').val();
+        });
+
+        function setDates() {
+            var now = new Date();
+            var day = ("0" + now.getDate()).slice(-2);
+            var month = ("0" + (now.getMonth() + 1)).slice(-2);
+            var today = now.getFullYear() + "-" + (month) + "-" + (day);
+            $('#DueFromDate').val(today);
+            $('#DueToDate').val(today);
+        }
+    </script>
 </head>
+
 <body>
 
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -33,7 +50,7 @@
                         <a class="nav-link" href="html/movies/movies.html">Movies</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="html/blogposts/BlogPosts.html">BlogPosts</a>                        
+                        <a class="nav-link" href="html/blogposts/BlogPosts.html">BlogPosts</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="html/Rents/rents.html">Rents</a>
@@ -44,7 +61,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="html/files/files.html">Files</a>
                     </li>
-                    <li class="nav-item dropdown"  id="adminmenu">
+                    <li class="nav-item dropdown" id="adminmenu">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Admin</a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="html/admin/users.html">Users</a></li>
@@ -55,18 +72,70 @@
                 <div class="d-flex white-text">
                     Welcome &nbsp;<span id="username"></span>&nbsp;
                     <button class="btn btn-primary" id="btnlogin" type="button">Login</button>
-                    <button onclick="logout()"  class="btn btn-primary" id="btnlogout" type="button">Logout</button>
+                    <button onclick="logout()" class="btn btn-primary" id="btnlogout" type="button">Logout</button>
                 </div>
             </div>
         </div>
     </nav>
 
     <div class="container-fluid mt-3">
-        <h3>Navbar Forms</h3>
-        <p>You can also include forms inside the navigation bar.</p>
+        <h3>Dashboard</h3>
+
+        <form method="post" onsubmit="searchtasks(event)">
+            <div class="row ">
+                <div class=col-md-2>
+                    Duration
+                    <select id="duration" class="form-control">
+                        <option value="today">Today</option>
+                        <option value=week>Week</option>
+                        <option value=custom>Custom</option>
+                    </select>
+                </div>
+                <div class=col-md-2>
+                    <label class="control-label bold">From</label>
+                    <input type="date" id="DueFromDate" class="form-control" />
+                </div>
+                <div class=col-md-2>
+                    To
+                    <input type="date" id="DueToDate" class="form-control" />
+                </div>
+                <div class="col-md-2">
+                    Select Status
+                    <select id="Status" class="form-control">
+                        <option value="None">Select</option>
+                        <option value=InProgress>In Progress</option>
+                        <option value=Completed>Completed</option>
+                        <option value=Pending>Pending</option>
+                    </select>
+                </div>
+                <div class=col-md-4>
+                    <br />
+                    <input type="submit" value="Search" class="btn btn-primary" />
+                    <input type="button" value="Clear" onclick="clearSearch()" class="btn btn-primary" />
+                    <a class="button" href="/html/tasks/addtask.html">Add New</a>
+                </div>
+
+            </div>
+        </form>
+        <div class="row">
+            <div class="col-md-12" id="lstTasks">
+            </div>
+            <div class="col-md-12" id="pagination"></div>
+        </div>
+
     </div>
-    <script src="./scripts/validateuser.js"></script>
+
+    <input type="hidden" id="pageno">
+    <input type="hidden" id="totalrecords">
+
+    <!--common js imports-->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../../scripts/makehttpcall.js"></script>
+    <script src="../../scripts/appconfig.js"></script>
+    <script src="../../scripts/validateuser.js"></script>
+
+    <script src="./scripts/pagination.js"></script>
+    <script src="../../scripts/tasks/searchtasks.js"></script>
 </body>
+
 </html>
-
-

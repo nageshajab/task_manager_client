@@ -6,7 +6,7 @@ async function clearSearch() {
     $('#Status').val('None');
     $('#DueFromDate').val('');
     $('#DueToDate').val('');
-    await searchtasks(); 
+    await searchtasks();
 }
 async function searchtasks(event) {
     //  debugger;
@@ -46,13 +46,13 @@ async function searchtasks(event) {
 }
 
 async function LoadTasks() {
-    
+
     var requestbody = {
         UserId: localStorage.getItem('userId')
         //email: document.getElementById('email').value,
         //PasswordHash: document.getElementById('pwd').value
     };
-
+    $('#pageno').val('1');
     var result = await makeHttpPostRequest(baseurl + 'api/tasklist', requestbody).catch(error => {
         console.error(error);
     }).then(data => {
@@ -64,7 +64,7 @@ async function LoadTasks() {
             alert('no data found');
         }
     });
-    
+
 }
 
 async function Binddata(data) {
@@ -78,7 +78,9 @@ async function Binddata(data) {
         <td scope="col"><b>Status</b></td>
         <td></td>        
     </tr>`;
-
+debugger;
+    $('#totalrecords').val(data.taskSearch.totalRecords);
+    
     for (var i = 0; i < data.listOfTasks.length; i++) {
         var task = data.listOfTasks[i];
         var taskrow = `<tr>
@@ -98,17 +100,17 @@ async function Binddata(data) {
     bindPagination(data);
 }
 
-async function DeleteTask(id){
-    if(!confirm('are u sure?'))
+async function DeleteTask(id) {
+    if (!confirm('are u sure?'))
         return;
-    
+
     var requestbody = {
         Id: id
     };
     var result = await makeHttpPostRequest(baseurl + 'api/deletetask', requestbody).catch(error => {
         console.error(error);
     }).then(data => {
-//        debugger;
+        //        debugger;
         if (data != undefined) {
             clearSearch();
         } else {
@@ -117,23 +119,6 @@ async function DeleteTask(id){
     });
 }
 
-function bindPagination(data) {
- //   debugger;
-
-    var numberofpages = Math.ceil(data.taskSearch.totalRecords / 10);
-
-    $('#pagination').empty();
-
-    var link = `<button onclick=Binddatabypagenumber(1)> First</button> `;
-    $('#pagination').append(link);
-
-    for (var i = 0; i < numberofpages; i++) {
-        var link = `<button onclick=Binddatabypagenumber(${i + 1})> ${i + 1}</button> `;
-        $('#pagination').append(link);
-    }
-    var link = `<button onclick=Binddatabypagenumber(${numberofpages})> Last</button> `;
-    $('#pagination').append(link);
-}
 
 async function Binddatabypagenumber(pgno) {
     $('#pageno').val(pgno);

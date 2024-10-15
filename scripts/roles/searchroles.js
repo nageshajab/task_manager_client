@@ -55,7 +55,9 @@ async function Binddata(data) {
         <td scope="col"><b>Name</b></td>
         <td></td>        
     </tr>`;
-debugger;
+
+    $('#totalrecords').val(data.taskSearch.totalRecords);
+    
     for (var i = 0; i < data.length; i++) {
         var role = data[i];
         var rolerow = `<tr>
@@ -67,24 +69,6 @@ debugger;
     $('#lstRoles').append(rolehtml + '</table>');
 
     bindPagination(data);
-}
-
-function bindPagination(data) {
- //   debugger;
-
-    // var numberofpages = Math.ceil(data.taskSearch.totalRecords / 10);
-
-    // $('#pagination').empty();
-
-    // var link = `<button onclick=Binddatabypagenumber(1)> First</button> `;
-    // $('#pagination').append(link);
-
-    // for (var i = 0; i < numberofpages; i++) {
-    //     var link = `<button onclick=Binddatabypagenumber(${i + 1})> ${i + 1}</button> `;
-    //     $('#pagination').append(link);
-    // }
-    // var link = `<button onclick=Binddatabypagenumber(${numberofpages})> Last</button> `;
-    // $('#pagination').append(link);
 }
 
 async function Binddatabypagenumber(pgno) {

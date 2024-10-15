@@ -29,13 +29,13 @@ async function searchmovies(event) {
 }
 
 async function Loadmovies() {
-  //  debugger;
+    //  debugger;
     var requestbody = {
         UserId: localStorage.getItem('userId')
         //email: document.getElementById('email').value,
         //PasswordHash: document.getElementById('pwd').value
     };
-
+    $('#pageno').val('1');
     var result = await makeHttpPostRequest(baseurl + 'api/movielist', requestbody).catch(error => {
         console.error(error);
     }).then(data => {
@@ -51,7 +51,7 @@ async function Loadmovies() {
 }
 
 async function Binddata(data) {
-   // debugger;
+    // debugger;
     $('#lstMovies').empty();
     if (data.listOfMovies != undefined) {
         var moviehtml = `<table class='table table-hover table-striped table-bordered'>
@@ -64,16 +64,17 @@ async function Binddata(data) {
         <td scope="col"><b>Actors</b></td>
         <td></td>        
     </tr>`;
-     //   debugger;
+   
+        $('#totalrecords').val(data.movieSearch.totalRecords);
 
         for (var i = 0; i < data.listOfMovies.length; i++) {
             var movie = data.listOfMovies[i];
             var movierow = `<tr>
                     <td>${movie.name}</td>
-                    <td>${ printGenre( movie.genre)}</td>
+                    <td>${printGenre(movie.genre)}</td>
                     <td>${movie.rating}</td>
                     <td>${movie.description}</td>
-                    <td>${printLanguage( movie.language)}</td>
+                    <td>${printLanguage(movie.language)}</td>
                     <td>${movie.actors}</td>
                     <td><a href="/html/movies/addmovie.html?id=${movie.id}">Edit</a> 
                     <button class="btn " onclick='Deletemovie("${movie.id}")'>Delete</button></td>
@@ -107,33 +108,15 @@ async function Deletemovie(id) {
     });
 }
 
-function bindPagination(data) {
-    //   debugger;
-
-    var numberofpages = Math.ceil(data.movieSearch.totalRecords / 10);
-
-    $('#pagination').empty();
-
-    var link = `<button onclick=Binddatabypagenumber(1)> First</button> `;
-    $('#pagination').append(link);
-
-    for (var i = 0; i < numberofpages; i++) {
-        var link = `<button onclick=Binddatabypagenumber(${i + 1})> ${i + 1}</button> `;
-        $('#pagination').append(link);
-    }
-    var link = `<button onclick=Binddatabypagenumber(${numberofpages})> Last</button> `;
-    $('#pagination').append(link);
-}
-
 async function Binddatabypagenumber(pgno) {
     $('#pageno').val(pgno);
     await searchmovie();
 }
 
 function printGenre(status) {
- //   debugger;
+    //   debugger;
     switch (status) {
-    
+
         case 0: return 'Suspense';
         case 1: return 'Action';
         case 2: return 'Comedy';
@@ -148,7 +131,7 @@ function printGenre(status) {
 }
 
 function printLanguage(language) {
-  //  debugger;
+    //  debugger;
     switch (language) {
 
         case 0: return 'Hindi';
@@ -160,5 +143,5 @@ function printLanguage(language) {
         case 6: return 'Marathi';
         default: return ''
     }
-}       
+}
 //module.exports = searchmovies;

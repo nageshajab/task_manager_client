@@ -38,7 +38,7 @@ async function LoadBlogPosts() {
         //email: document.getElementById('email').value,
         //PasswordHash: document.getElementById('pwd').value
     };
-
+    $('#pageno').val('1');
     var result = await makeHttpPostRequest(baseurl + 'api/BlogPostlist', requestbody).catch(error => {
         console.error(error);
     }).then(data => {
@@ -63,7 +63,9 @@ async function Binddata(data) {
         <td scope="col"><b>Tags</b></td>
         <td></td>        
     </tr>`;
-
+    
+    $('#totalrecords').val(data.blogPostSearch.totalRecords);
+    
     for (var i = 0; i < data.listOfBlogPosts.length; i++) {
         var BlogPost = data.listOfBlogPosts[i];
         var BlogPostrow = `<tr>
@@ -100,27 +102,6 @@ async function DeleteBlogPost(id){
             alert('something went wrong');
         }
     });
-}
-
-function bindPagination(data) {
- //   debugger;
-    
-    if(data.blogPostSearch==undefined)
-        return;
-
-    var numberofpages = Math.ceil(data.blogPostSearch.totalRecords / 10);
-
-    $('#pagination').empty();
-
-    var link = `<button onclick=Binddatabypagenumber(1)> First</button> `;
-    $('#pagination').append(link);
-
-    for (var i = 0; i < numberofpages; i++) {
-        var link = `<button onclick=Binddatabypagenumber(${i + 1})> ${i + 1}</button> `;
-        $('#pagination').append(link);
-    }
-    var link = `<button onclick=Binddatabypagenumber(${numberofpages})> Last</button> `;
-    $('#pagination').append(link);
 }
 
 async function Binddatabypagenumber(pgno) {

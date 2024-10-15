@@ -65,7 +65,7 @@ async function Loadurls() {
         //email: document.getElementById('email').value,
         //PasswordHash: document.getElementById('pwd').value
     };
-
+    $('#pageno').val('1');
     var result = await makeHttpPostRequest(baseurl + 'api/urllist', requestbody).catch(error => {
         console.error(error);
     }).then(data => {
@@ -92,7 +92,8 @@ async function Binddata(data) {
         <td scope="col"><b>Actress</b></td>        
         <td></td>        
     </tr>`;
-        //   debugger;
+   
+        $('#totalrecords').val(data.urlSearch.totalRecords);
 
         for (var i = 0; i < data.listOfUrls.length; i++) {
             var url = data.listOfUrls[i];
@@ -144,24 +145,6 @@ async function Deleteurl(id) {
             alert('something went wrong');
         }
     });
-}
-
-function bindPagination(data) {
-    //   debugger;
-
-    var numberofpages = Math.ceil(data.urlSearch.totalRecords / 10);
-
-    $('#pagination').empty();
-
-    var link = `<button onclick=Binddatabypagenumber(1)> First</button> `;
-    $('#pagination').append(link);
-
-    for (var i = 0; i < numberofpages; i++) {
-        var link = `<button onclick=Binddatabypagenumber(${i + 1})> ${i + 1}</button> `;
-        $('#pagination').append(link);
-    }
-    var link = `<button onclick=Binddatabypagenumber(${numberofpages})> Last</button> `;
-    $('#pagination').append(link);
 }
 
 async function Binddatabypagenumber(pgno) {

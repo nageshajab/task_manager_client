@@ -39,7 +39,7 @@ async function LoadSugarReadings(param) {
         //email: document.getElementById('email').value,
         //PasswordHash: document.getElementById('pwd').value
     };
-
+    $('#pageno').val('1');
     var result = await makeHttpPostRequest(baseurl + 'api/sugarreadinglist', requestbody).catch(error => {
         console.error(error);
     }).then(data => {
@@ -58,8 +58,6 @@ async function LoadSugarReadings(param) {
 
 }
 
-
-
 async function Binddata(data) {
     debugger;
     $('#lstsugarreadings').empty();
@@ -72,6 +70,8 @@ async function Binddata(data) {
         <td scope="col"><b>Medicines</b></td>
         <td></td>        
     </tr>`;
+   
+    $('#totalrecords').val(data.sugarReadingSearch.totalRecords);
 
     for (var i = 0; i < data.listOfSugarReadings.length; i++) {
         var sugarreading = data.listOfSugarReadings[i];
@@ -109,24 +109,6 @@ async function Deletesugarreading(id) {
             alert('something went wrong');
         }
     });
-}
-
-function bindPagination(data) {
-    debugger;
-
-    var numberofpages = Math.ceil(data.sugarReadingSearch.totalRecords / 10);
-
-    $('#pagination').empty();
-
-    var link = `<button onclick=Binddatabypagenumber(1)> First</button> `;
-    $('#pagination').append(link);
-
-    for (var i = 0; i < numberofpages; i++) {
-        var link = `<button onclick=Binddatabypagenumber(${i + 1})> ${i + 1}</button> `;
-        $('#pagination').append(link);
-    }
-    var link = `<button onclick=Binddatabypagenumber(${numberofpages})> Last</button> `;
-    $('#pagination').append(link);
 }
 
 async function Binddatabypagenumber(pgno) {
