@@ -22,5 +22,5 @@ if (roles != null || roles != 'undefined') {
 
 async function logout(){
     localStorage.clear();
-    window.location.href = 'html/admin/login.html';
+    window.location.href = '/html/admin/login.html';
 }
