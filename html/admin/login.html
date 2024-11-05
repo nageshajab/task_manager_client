@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Task Manager</title>
     <meta charset="utf-8">
@@ -12,6 +13,14 @@
             document.getElementById('pwd').value = "";
         }
 
+        $('#pwd').keypress(function (e) {
+            var key = e.which;
+            if (key == 13)  // the enter key code
+            {
+                handleSubmit(event);
+            }
+        });
+        
         async function handleSubmit(event) {
             event.preventDefault();
 
@@ -20,7 +29,7 @@
                 PasswordHash: document.getElementById('pwd').value
             };
 
-            var result = await makeHttpPostRequest(baseurl+'api/Login', requestbody).catch(error => {
+            var result = await makeHttpPostRequest(baseurl + 'api/Login', requestbody).catch(error => {
                 console.error(error);
             }).then(data => {
                 if (data.token != undefined) {
@@ -38,6 +47,7 @@
         }
     </script>
 </head>
+
 <body>
 
     <div class="container mt-3">
@@ -58,9 +68,10 @@
         </form>
     </div>
 
-    <!--common js imports--> 
+    <!--common js imports-->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="../../scripts/makehttpcall.js"></script>
     <script src="../../scripts/appconfig.js"></script>
 </body>
+
 </html>
