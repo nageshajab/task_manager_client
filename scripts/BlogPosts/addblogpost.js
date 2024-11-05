@@ -24,7 +24,7 @@ debugger;
             debugger;
             if (data != undefined) {
                 alert('updated successfully');
-                window.location.href = '/html/blogposts/BlogPosts.html';
+                window.location.href = '/html/blogposts/blogposts.html';
             } else {
                 alert(data);
                 clearform();
@@ -37,7 +37,7 @@ debugger;
             debugger;
             if (data != undefined) {
                 alert('added successfully');
-                window.location.href = '/html/blogposts/BlogPosts.html';
+                window.location.href = '/html/blogposts/blogposts.html';
             } else {
                 alert(data);
                 clearform();
