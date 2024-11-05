@@ -18,8 +18,15 @@
             await gettagsfromdatabase();
             if (getUrlVars()['id'] != undefined){
                 await geturl();
-            }            
+            }       
+
+            $('#cancelbtn').on('click', function () {
+                 window.location.href = "../urls/urls.html";
+             });     
         });
+
+     
+
     </script>
 </head>
 
@@ -83,6 +90,10 @@
                 <input type="text" class="form-control" id="actress" placeholder="Enter actress" name="actress">
             </div>
             <div class="mb-3">
+                <label for="actressurl">Actress:</label>
+                <input type="text" class="form-control" id="actressurl" placeholder="Enter actress url" name="actressurl">
+            </div>
+            <div class="mb-3">
                 <label for="tags">Tags:</label>
                 <div id="tagsfromdb"></div>
                 <input type="text" class="form-control" id="tags" placeholder="Enter tags"
@@ -94,6 +105,7 @@
             </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="button" id="cancelbtn" class="btn btn-primary">Cancel</button>
         </form>
     </div>
 

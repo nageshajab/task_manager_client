@@ -4,6 +4,7 @@ async function clearform() {
     $('#description').val('');
     $('#tags').val('');
     $('#actress').val('');
+    $('#actressurl').val('');
 
     $('input[type=checkbox]').each(function () {
         this.checked = false;
@@ -33,9 +34,10 @@ async function addurl(event) {
         link: $('#link').val(),
         Description: $('#description').val(),
         Actress: $('#actress').val(),
+        ActressUrl: $('#actressurl').val(),
         UserId: localStorage.getItem('userId')
     };
-
+   
     url.Tags=await readselectedtags();
 
     try {

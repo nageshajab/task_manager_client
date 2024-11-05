@@ -18,6 +18,7 @@ async function geturl(event) {
             $('#description').val(data.description);
             bindtags(data.tags);
             $('#actress').val(data.actress);
+            $('#actressurl').val(data.actressUrl);
         } else {
             alert('Failed to get url details');
         }

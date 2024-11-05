@@ -12,7 +12,7 @@ debugger;
         UserId: localStorage.getItem('userId'),
         RepositoryUrls: $('#repositoryurls').val().split(','),
         BlogPostUrl: $('#BlogPostUrl').val(),
-        Tags: $('#Tags').val().split(',')
+        Tags: $('#tags').val().split(',')
     };
 
     if (getUrlVars()['id'] != undefined) {
