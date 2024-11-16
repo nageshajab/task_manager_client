@@ -24,7 +24,7 @@ async function addmovie(event) {
             result = await makeHttpPostRequest(baseurl + 'api/addmovie', movie);
             alert('added successfully');
         }
-        window.location.href = '/movies.html';
+        window.location.href = '/html/movies/movies.html';
         console.log(JSON.stringify(result)); // Ensure result is logged here
     } catch (error) {
         console.error(error);
