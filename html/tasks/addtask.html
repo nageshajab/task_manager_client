@@ -17,6 +17,7 @@
         $(document).ready(async function () {
             if (getUrlVars()['id'] != undefined)
                 await gettask();
+            $('#progressbar').hide();
         });
     </script>
 </head>
@@ -67,6 +68,7 @@
         </div>
     </nav>
 
+    <img id="progressbar" src="../../images/progress.gif"/>
     <div class="container mt-3">
         <h2>Add Task</h2>
         <form method="post" onsubmit="addtask(event)">
@@ -83,7 +85,8 @@
                 <label for="type">Type:</label>
                 <select id="type" class="form-control">
                     <option value=other>Other</option>
-                    <option value=vehicle>Vehicle</option>                    
+                    <option value=vehicle>Vehicle</option>  
+                    <option value="rent">Rent</option>                  
                 </select>
             </div>
             <div class="mb-3 mt-3">

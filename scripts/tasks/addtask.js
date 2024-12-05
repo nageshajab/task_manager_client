@@ -2,6 +2,7 @@
 
 async function addtask(event) {
     debugger;
+    $('#progressbar').show();
     if (event != undefined) {
         event.preventDefault();
     }
@@ -49,6 +50,7 @@ async function addtask(event) {
         });
     }
     console.log(JSON.stringify(result));
+    $('#progressbar').hide();
 }
 
 $('#type').on('change', function () {

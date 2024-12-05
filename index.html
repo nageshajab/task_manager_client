@@ -17,6 +17,10 @@
         $(document).ready(async function () {
             await LoadDashboard();
         });
+
+        $('#type').on('change', function () {
+            LoadDashboard();
+        });
     </script>
 </head>
 
@@ -42,7 +46,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="html/blogposts/BlogPosts.html">BlogPosts</a>
                     </li>
-                   
+
                     <li class="nav-item">
                         <a class="nav-link" href="html/SugarReadings/sugarreadings.html">SugarReadings</a>
                     </li>
@@ -68,15 +72,34 @@
 
     <div class="container-fluid mt-3">
         <h3>Dashboard</h3>
-        <div class="card" style="width: 18rem;">
-                       
-            <div class="card-body">
-              <h5 class="card-title">Vehicle</h5>
-              <p id="vehicleinfo" class="card-text"></p>
-            </div>
-            
-        </div>
 
+        <select id="duration">
+            <option value="7">1 week</option>
+            <option value="30">1 Month</option>
+            <option value="90">3 Months</option>
+            <option value="180">6 Months</option>
+            <option value="365">1 Year </option>
+        </select>
+        <div class="row">
+            <div class="col-sm-3 d-flex justify-content-center">
+                <div class="card" id="vehiclecard" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Vehicle</h5>
+                        <p id="vehicleinfo" class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 d-flex justify-content-center">
+                <div class="card" id="rentcard" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Rent</h5>
+                        <p id="rents" class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 d-flex justify-content-center">
+            </div>
+        </div>
     </div>
 
     <!--common js imports-->
