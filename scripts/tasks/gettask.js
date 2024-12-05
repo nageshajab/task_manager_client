@@ -29,6 +29,9 @@ async function gettask(event) {
             $('#status').val(data.status);
             $('#repeat').val(data.repeat);
             $('#enddate').val(data.enddate);
+            $('#type').val(data.type);
+            $('#subtype').val(data.subtype);
+            //$('#id').val(data.id);
 
         } else {
             alert('Failed to update task');

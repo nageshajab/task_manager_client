@@ -1,6 +1,5 @@
 //const makeHttpPostRequest = require('../makehttpcall');
 
-
 async function clearSearch() {
     $('#pageno').val('');
     $('#Status').val('None');
@@ -8,6 +7,7 @@ async function clearSearch() {
     $('#DueToDate').val('');
     await searchtasks();
 }
+
 async function searchtasks(event) {
     //  debugger;
     if (event != undefined) {
@@ -64,7 +64,6 @@ async function LoadTasks() {
             alert('no data found');
         }
     });
-
 }
 
 async function Binddata(data) {

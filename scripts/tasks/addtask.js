@@ -1,7 +1,7 @@
 //const getUrlVars = require('../geturlvars');
 
 async function addtask(event) {
-     debugger;
+    debugger;
     if (event != undefined) {
         event.preventDefault();
     }
@@ -13,12 +13,14 @@ async function addtask(event) {
         DueDate: $('#duedate').val(),
         Priority: $('#priority').val(),
         Status: $('#status').val(),
-        RepeatType:$("#repeat").val(),
-        Enddate:$("#enddate").val()
+        RepeatType: $("#repeat").val(),
+        Enddate: $("#enddate").val(),
+        Type: $("#type").val(),
+        SubType: $("#subtype").val()
     };
 
     if (getUrlVars()['id'] != undefined) {
-       
+
         task.Id = getUrlVars()['id'];
         var result = await makeHttpPostRequest(baseurl + 'api/updatetask', task).catch(error => {
             console.error(error);
@@ -32,7 +34,7 @@ async function addtask(event) {
                 clearform();
             }
         });
-    } else { 
+    } else {
         var result = await makeHttpPostRequest(baseurl + 'api/addtask', task).catch(error => {
             console.error(error);
         }).then(data => {
@@ -49,4 +51,19 @@ async function addtask(event) {
     console.log(JSON.stringify(result));
 }
 
-//module.exports = addtask;
+$('#type').on('change', function () {
+    
+    var type = $('#type').find(":selected").val();
+
+    if (type == 'vehicle') {
+        $('#subtype').empty();
+
+        $('#subtype').append('<option selected="selected" value="swift">swift</option>');
+        $('#subtype').append('<option value="chetak">chetak</option>');
+        $('#subtype').append('<option value="avenger">avenger</option>');
+    }
+    else if(type=='other') {
+        $('#subtype').empty();
+        $('#subtype').append('<option selected="selected" value="other">other</option>');
+    }
+});

@@ -20,6 +20,9 @@
                 PasswordHash: document.getElementById('pwd').value
             };
 
+            console.log(baseurl);
+            console.log(baseurl+'api/register');
+
             var result = await makeHttpPostRequest(baseurl+'api/register', requestbody).catch(error => {
                 console.error(error);
             }).then(data => {
@@ -54,7 +57,7 @@
 
     <!--common js imports--> 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="./scripts/makehttpcall.js"></script>
-    <script src="./scripts/appconfig.js"></script>
+    <script src="../../scripts/makehttpcall.js"></script>
+    <script src="../../scripts/appconfig.js"></script>
 </body>
 </html>
