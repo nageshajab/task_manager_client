@@ -57,7 +57,7 @@ async function BindDashboarddata(data) {
         else if (task.type == 'rent') {
             var taskrow = `<li >
             <a href="/html/tasks/tasks.html">      
-            ${task.title} ${task.dueDate}                    
+            ${task.title} ${dateToString(task.dueDate)}                    
             </a>
                   </li>`;
             rentcount += 1;
