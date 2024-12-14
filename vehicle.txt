@@ -1,0 +1,22 @@
+
+chetak
+registration date= 23-8-2023
+1st service = 7 October 2023
+2nd service = 7 April 2024
+3rd service =  7 October 2024
+4th service = 7 April 2025
+
+avenger
+registration date = 25 nov 2024
+1st service = 30-45 days=25 December 2024 - 9 January 2025
+2nd service = 240 days = 23 July 2025
+3rd service = 360 days = 20 November 2025
+subsequent service = 120 days after last service = 20 March 2026
+
+petrol filled twice of rupees 500 rs , total 1000 rs, ran 220 km so far
+charges per km= 4.5 per km
+
+swift
+	insurance renew - dec	
+	servicing -dec
+

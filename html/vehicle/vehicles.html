@@ -41,7 +41,7 @@
                         <a class="nav-link" href="html/tasks/tasks.html">Tasks</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="html/rents/rents.html">Rents</a>
+                        <a class="nav-link" href="../rents/rents.html">Rents</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="html/Vehicle/Vehicles.html">Vehicle</a>
@@ -76,34 +76,13 @@
     </nav>
 
     <div class="container-fluid mt-3">
-        <h3>Dashboard</h3>
+        <h3>Vehicles</h3>
 
-        <select id="duration">
-            <option value="7">1 week</option>
-            <option value="30">1 Month</option>
-            <option value="90">3 Months</option>
-            <option value="180">6 Months</option>
-            <option value="365">1 Year </option>
-        </select>
         <div class="row">
-            <div class="col-sm-3 d-flex justify-content-center">
-                <div class="card" id="vehiclecard" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Vehicle</h5>
-                        <p id="vehicleinfo" class="card-text"></p>
-                    </div>
-                </div>
+            <div class="col-md-12" id="lstTasks">
+                <img src="../../images/vehicles.png" width="800px" height="500px"/>
             </div>
-            <div class="col-sm-3 d-flex justify-content-center">
-                <div class="card" id="rentcard" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Rent</h5>
-                        <p id="rents" class="card-text"></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 d-flex justify-content-center">
-            </div>
+            
         </div>
     </div>
 
@@ -113,7 +92,7 @@
     <script src="./scripts/appconfig.js"></script>
     <script src="./scripts/validateuser.js"></script>
     <script src="./scripts/common.js"></script>
-    <script src="./scripts/dashboard/dashboard.js"></script>
+
 </body>
 
 </html>
